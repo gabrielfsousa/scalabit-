@@ -3,7 +3,7 @@ name: K3s-destroy
 on:
   push:
     branches:
-      - main
+      - main_
   workflow_dispatch:
 
 env:
@@ -26,6 +26,11 @@ jobs:
 
       - name: Terraform Import
         id: init
+        run: |
+          cd terraform
+          terraform init
+
+      - name: Terraform Import
         run: |
           cd terraform
           terraform import google_compute_firewall.k3s-firewall airy-coil-393209
