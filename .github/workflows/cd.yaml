@@ -56,6 +56,9 @@ jobs:
           echo "$SSH_KEY" > /tmp/id_rsa
           cat /tmp/id_rsa
           cat /tmp/id_rsa.pub
+        env:
+          SSH_PUB_KEY: ${{ secrets.SSH_PUB_KEY }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
 
       - name: Terraform Init
         id: init

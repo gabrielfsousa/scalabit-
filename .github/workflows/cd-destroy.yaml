@@ -47,7 +47,7 @@ jobs:
         run: |
           cd terraform
           terraform import google_compute_firewall.k3s-firewall k3s-firewall
-          terraform import google_compute_instance.k3s-master k3s-master
+          terraform import google_compute_instance.k3s-master projects/airy-coil-393209/zones/asia-south1-a/instances/k3s-master
         continue-on-error: true
 
       - name: Terraform Destroy
