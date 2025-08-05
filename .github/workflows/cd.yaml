@@ -50,6 +50,11 @@ jobs:
           SSH_PUB_KEY: ${{ secrets.SSH_PUB_KEY }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
 
+      - name: Check SSH KEYs
+        run: |
+          cat ~/.ssh/id_rsa
+          cat ~/.ssh/id_rsa.pub 
+
       - name: Terraform Init
         id: init
         run: |
