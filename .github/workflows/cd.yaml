@@ -7,9 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  TF_VAR_gcp_project_id: your-gcp-project-id  # <<< UPDATE THIS
-  TF_VAR_gcp_region: us-central1              # <<< UPDATE THIS
-  SSH_KEY_NAME: deploy_key
+  TF_VAR_gcp_project_id: id 
 
 jobs:
   deploy-k3s:
@@ -26,12 +24,18 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Install K3S-UP
+        run: |
+          curl -sLS https://get.k3sup.dev | sh
+          sudo install k3sup /usr/local/bin/
+          k3sup version
+
       - name: Create SSH PUB KEY
         run: |
           mkdir ~/.ssh
           chmod 700 ~/.ssh
           echo "$SSH_PUB_KEY" > ~/.ssh/id_rsa.pub
-          ls -al
+          ls -al ~/
         env:
           MY_SECRET: ${{ secrets.SSH_PUB_KEY }}
 
