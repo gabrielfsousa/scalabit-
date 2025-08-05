@@ -26,6 +26,12 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Create SSH PUB KEY
+        run: |
+          echo "$SSH_PUB_KEY" > ~/.ssh/id_rsa.pub
+        env:
+          MY_SECRET: ${{ secrets.SSH_PUB_KEY }}
+
       - name: Terraform Init
         id: init
         run: |
