@@ -27,6 +27,9 @@ jobs:
       - name: Install K3S-UP
         run: |
           curl -sLS https://get.k3sup.dev | sh
+          pwd
+          ls -al
+          cd /home/runner/work/scalabit-/scalabit-/
           sudo install k3sup /usr/local/bin/
 
       - name: Install K3S-VERSION
