@@ -33,8 +33,8 @@ jobs:
       - name: Terraform Import
         run: |
           cd terraform
-          terraform import google_compute_firewall.k3s-firewall airy-coil-393209
-          terraform import k3s_master_instance.k3s-master airy-coil-393209
+          terraform import google_compute_firewall.k3s-firewall k3s-firewall
+          terraform import k3s_master_instance.k3s_master_instance k3s-master
 
       - name: Terraform Destroy
         run: |
