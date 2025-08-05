@@ -26,7 +26,8 @@ jobs:
 
       - name: Install K3S-UP
         run: |
-          curl -sLS https://get.k3sup.dev | sh
+          #curl -sLS https://get.k3sup.dev | sh
+          wget https://github.com/alexellis/k3sup/releases/download/0.13.10/k3sup
           sudo cp k3sup /usr/local/bin/
           pwd
           ls -al
