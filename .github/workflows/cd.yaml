@@ -43,7 +43,7 @@ jobs:
           chmod 700 ~/.ssh
           echo "$SSH_PUB_KEY" > ~/.ssh/id_rsa.pub
           chmod 700 ~/.ssh/id_rsa.pub
-          ls -al ~/ssh
+          ls -al ~/.ssh
         env:
           MY_SECRET: ${{ secrets.SSH_PUB_KEY }}
 
