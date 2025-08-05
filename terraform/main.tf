@@ -18,7 +18,7 @@ resource "google_compute_firewall" "k3s-firewall" {
   source_tags = ["k3s"]
 }
 
-resource "google_compute_instance" "k3s_master_instance" {
+resource "google_compute_instance" "k3s-master" {
   name         = "k3s-master"
   machine_type = "n2-standard-2"
   zone         = var.zone

@@ -37,15 +37,18 @@ jobs:
         run: |
           k3sup version
 
-      - name: Create SSH PUB KEY
+      - name: Create SSH KEYs
         run: |
           mkdir ~/.ssh
           chmod 700 ~/.ssh
           echo "$SSH_PUB_KEY" > ~/.ssh/id_rsa.pub
-          chmod 700 ~/.ssh/id_rsa.pub
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa.pub
+          chmod 600 ~/.ssh/id_rsa
           ls -al ~/.ssh
         env:
-          MY_SECRET: ${{ secrets.SSH_PUB_KEY }}
+          SSH_PUB_KEY: ${{ secrets.SSH_PUB_KEY }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
 
       - name: Terraform Init
         id: init

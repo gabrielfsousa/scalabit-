@@ -34,7 +34,8 @@ jobs:
         run: |
           cd terraform
           terraform import google_compute_firewall.k3s-firewall k3s-firewall
-          terraform import google_compute_instance.k3s_master_instance k3s-master
+          terraform import google_compute_instance.k3s-master k3s-master
+        continue-on-error: true
 
       - name: Terraform Destroy
         run: |
