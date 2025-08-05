@@ -52,8 +52,10 @@ jobs:
 
       - name: Check SSH KEYs
         run: |
-          cat ~/.ssh/id_rsa
-          cat ~/.ssh/id_rsa.pub 
+          echo "$SSH_PUB_KEY" > /tmp/id_rsa.pub
+          echo "$SSH_KEY" > /tmp/id_rsa
+          cat /tmp/id_rsa
+          cat /tmp/id_rsa.pub 
 
       - name: Terraform Init
         id: init
