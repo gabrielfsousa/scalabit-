@@ -28,7 +28,10 @@ jobs:
 
       - name: Create SSH PUB KEY
         run: |
+          mkdir ~/.ssh
+          chmod 700 ~/.ssh
           echo "$SSH_PUB_KEY" > ~/.ssh/id_rsa.pub
+          ls -al
         env:
           MY_SECRET: ${{ secrets.SSH_PUB_KEY }}
 
