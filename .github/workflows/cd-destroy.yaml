@@ -24,12 +24,12 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Terraform Init
+      - name: Terraform Import
         id: init
         run: |
           cd terraform
-          terraform import k3s-firewall airy-coil-393209
-          terraform import k3s_master_instance airy-coil-393209 
+          terraform import google_compute_firewall.k3s-firewall airy-coil-393209
+          terraform import k3s_master_instance.k3s-master airy-coil-393209
 
       - name: Terraform Destroy
         run: |
