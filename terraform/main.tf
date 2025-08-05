@@ -21,7 +21,7 @@ resource "google_compute_firewall" "k3s-firewall" {
 resource "google_compute_instance" "k3s-master" {
   name         = "k3s-master"
   machine_type = "n2-standard-2"
-  zone         = var.zone
+  #zone         = var.zone
   tags         = ["k3s", "k3s-master", "http-server", "https-server"]
 
 
@@ -50,7 +50,8 @@ resource "google_compute_instance" "k3s-master" {
             --ip ${self.network_interface[0].access_config[0].nat_ip} \
             --context k3s \
             --ssh-key ~/.ssh/id_rsa \
-            --user $(whoami)
+            --user gabriel
+#            --user $(whoami)
 #            --ssh-key ~/.ssh/google_compute_engine \
         EOT
   }
