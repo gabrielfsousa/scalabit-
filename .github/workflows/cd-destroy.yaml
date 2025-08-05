@@ -10,7 +10,7 @@ env:
   TF_VAR_gcp_project_id: id
 
 jobs:
-  destroy-k3s:
+  delK3S:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
