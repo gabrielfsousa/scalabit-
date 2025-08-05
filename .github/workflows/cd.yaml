@@ -1,0 +1,22 @@
+name: K3s 
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  TF_VAR_gcp_project_id: your-gcp-project-id  # <<< UPDATE THIS
+  TF_VAR_gcp_region: us-central1              # <<< UPDATE THIS
+  SSH_KEY_NAME: deploy_key
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
