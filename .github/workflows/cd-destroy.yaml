@@ -1,4 +1,4 @@
-name: K3s 
+name: K3s-destroy
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  TF_VAR_gcp_project_id: id 
+  TF_VAR_gcp_project_id: id
 
 jobs:
   deploy-k3s:

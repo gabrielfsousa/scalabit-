@@ -30,6 +30,10 @@ jobs:
           sudo install k3sup /usr/local/bin/
           k3sup version
 
+      - name: Install K3S-VERSION
+        run: |
+          k3sup version
+
       - name: Create SSH PUB KEY
         run: |
           mkdir ~/.ssh
