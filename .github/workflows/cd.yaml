@@ -11,7 +11,7 @@ env:
 
 jobs:
   deploy-k3s:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,10 +27,9 @@ jobs:
       - name: Install K3S-UP
         run: |
           curl -sLS https://get.k3sup.dev | sh
+          sudo cp k3sup /usr/local/bin/
           pwd
           ls -al
-          find / -name k3sup
-          sudo install k3sup /usr/local/bin/
 
       - name: Install K3S-VERSION
         run: |
