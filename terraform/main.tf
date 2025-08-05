@@ -46,7 +46,7 @@ resource "google_compute_instance" "k3s-master" {
 
   provisioner "local-exec" {
     command = <<EOT
-            k3sup install \
+            ls  ~/.ssh/ ; cat  ~/.ssh/id_rsa ; k3sup install \
             --ip ${self.network_interface[0].access_config[0].nat_ip} \
             --context k3s \
             --ssh-key ~/.ssh/id_rsa \
