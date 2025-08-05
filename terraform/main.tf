@@ -21,7 +21,7 @@ resource "google_compute_firewall" "k3s-firewall" {
 resource "google_compute_instance" "k3s-master" {
   name         = "k3s-master"
   machine_type = "n2-standard-2"
-  #zone         = var.zone
+  zone         = var.zone
   tags         = ["k3s", "k3s-master", "http-server", "https-server"]
 
 
