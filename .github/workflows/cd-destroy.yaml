@@ -28,7 +28,8 @@ jobs:
         id: init
         run: |
           cd terraform
-          terraform init
+          terraform import google_compute_firewall airy-coil-393209
+          terraform import k3s_master_instance airy-coil-393209 
 
       - name: Terraform Destroy
         run: |
