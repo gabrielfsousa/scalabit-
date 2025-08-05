@@ -36,4 +36,4 @@ jobs:
         id: apply
         run: |
           cd terraform
-          terraform apply -auto-approve -var="ssh_public_key=${{ secrets.ANSIBLE_SSH_PUBLIC_KEY }}"
+          terraform apply -auto-approve
