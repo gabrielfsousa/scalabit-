@@ -104,6 +104,12 @@ jobs:
         run: |
           export KUBECONFIG=/home/runner/work/scalabit-/scalabit-/kubeconfig
           kubectl config use-context k3s
-          kubectl get node -o wide       
+          kubectl get node -o wide
 
-            
+      - name: Cat kubeconfig 
+        run: |
+          cat  /home/runner/work/scalabit-/scalabit-/kubeconfig
+
+      - name: Deploy Gatekeeper
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/release-3.15/deploy/gatekeeper.yaml

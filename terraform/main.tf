@@ -43,19 +43,6 @@ resource "google_compute_instance" "k3s-master" {
     ssh-keys = "${var.ssh_user}:${file(var.public_key_path)}"
   }
 
-
-##  provisioner "local-exec" {
-##    command = <<EOT
-##            ls  ~/.ssh/ ; cat  ~/.ssh/id_rsa ; k3sup install \
-##            --ip ${self.network_interface[0].access_config[0].nat_ip} \
-##            --context k3s \
-##            --ssh-key ~/.ssh/id_rsa \
-##            --user gabriel
-#            --user $(whoami)
-#            --ssh-key ~/.ssh/google_compute_engine \
-##        EOT
-##  }
-
   depends_on = [
     google_compute_firewall.k3s-firewall,
   ]
