@@ -5,9 +5,7 @@ metadata:
   name: basic-auth
   namespace: default
 data:
-  users: |2
-    dGVzdDokYXByMSRINnVza2trVyRJZ1hMUDZld1RyU3VCa1RycUU4d2ovCnRlc3QyOiRhcHIxJGQ5
-    aHI5SEJCJDRIeHdnVWlyM0hQNEVzZ2dQL1FObzAK
+  users: YWRtaW46JGFwcjEkV2dLR3hLckskdE1oV3hLVXp1eXcubnJzWjJtS0ZBLwo=
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
@@ -17,6 +15,7 @@ metadata:
 spec:
   basicAuth:
     secret: basic-auth
+    removeHeader: true
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
