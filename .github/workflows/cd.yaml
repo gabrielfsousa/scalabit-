@@ -125,3 +125,7 @@ jobs:
           cat manifests/gk-constraint.yaml
           kubectl apply -f manifests/gk-constraint.yaml
         continue-on-error: true
+
+      - name: Deploy APP
+        run: |
+          kubectl apply -f manifests/app.yaml
