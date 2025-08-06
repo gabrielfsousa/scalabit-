@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: basic-auth
+  namespace: default
+data:
+  # The value is "admin:$(htpasswd -nb admin SuperSecretPassword123)" base64 encoded
+  # Command: echo -n "admin:$(htpasswd -nb admin SuperSecretPassword123)" | base64
+  users: YWRtaW46JGFwcjEkV2dLR3hLckskdE1oV3hLVXp1eXcubnJzWjJtS0ZBLwo=
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: auth-middleware
+  namespace: default
+spec:
+  basicAuth:
+    secret: basic-auth
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: node-app-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: default-auth-middleware@kubernetescrd
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: node-app-service
+            port:
+              number: 80
+
