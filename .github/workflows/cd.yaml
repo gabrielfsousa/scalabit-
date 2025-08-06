@@ -121,20 +121,16 @@ jobs:
 
       - name: Deploy Gatekeeper Constraint
         run: |
-          sleep 15s
+          sleep 20s
           cat manifests/gk-constraint.yaml
           kubectl apply -f manifests/gk-constraint.yaml
+          kubectl get crd k8sallowedrepos.constraints.gatekeeper.sh
         continue-on-error: true
 
       - name: Deploy APP
         run: |
           kubectl apply -f manifests/app.yaml
 
-      - name: Deploy Gatekeeper Constraint II
+      - name: Deploy Ingress Conf.
         run: |
-          sleep 15s
-          kubectl get crd k8sallowedrepos.constraints.gatekeeper.sh
-          cd manifests
-          cat gk-constraint.yaml
-          kubectl apply -f gk-constraint.yaml
-        continue-on-error: true
+          kubectl apply -f manifests/ingress.yaml
