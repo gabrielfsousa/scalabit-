@@ -83,7 +83,7 @@ jobs:
 
       - name: Check connection
         run: |
-          sleep 2s
+          sleep 6s
           nc -zv $VM_IP 22
         continue-on-error: true
 
