@@ -101,6 +101,11 @@ jobs:
         with:
           version: 'latest'
 
+     - name: Install Helm
+       uses: azure/setup-helm@v4
+       with:
+          version: 'v3.14.0'
+
       - name: Check K3s
         run: |
           export KUBECONFIG=/home/runner/work/scalabit-/scalabit-/kubeconfig
