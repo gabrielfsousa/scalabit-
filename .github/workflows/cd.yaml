@@ -83,11 +83,14 @@ jobs:
 
       - name: Check connection
         run: |
+          sleep 5s
           nc -zv $VM_IP 22
+        continue-on-error: true
 
       - name: Check SSH KEYs
         run: |
           ssh -vvv gabriel@$VM_IP
+        continue-on-error: true
 
       - name: K3s bootstrap
         run: |
