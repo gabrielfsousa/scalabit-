@@ -81,11 +81,6 @@ jobs:
           VM_IP=$(terraform output -raw external_ip)
           echo "VM_IP=$VM_IP" >> $GITHUB_ENV
 
-      - name: Ping k3s server
-        run: |
-          #sleep 5s 
-          ping $VM_IP
-
       - name: Check connection
         run: |
           nc -zv $VM_IP 22
