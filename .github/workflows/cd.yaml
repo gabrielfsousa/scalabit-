@@ -126,13 +126,12 @@ jobs:
         run: |
           kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper-library/master/library/general/allowedrepos/template.yaml
 
-      - name: Deploy Gatekeeper Constraint
-        run: |
-          sleep 20s
-          cat manifests/gk-constraint.yaml
-          kubectl apply -f manifests/gk-constraint.yaml
-          kubectl get crd k8sallowedrepos.constraints.gatekeeper.sh
-        continue-on-error: true
+          #      - name: Deploy Gatekeeper Constraint
+          #        run: |
+          #         sleep 20s
+          #          cat manifests/gk-constraint.yaml
+          #          kubectl apply -f manifests/gk-constraint.yaml
+          #          kubectl get crd k8sallowedrepos.constraints.gatekeeper.sh
 
       - name: Deploy APP
         run: |
@@ -147,24 +146,27 @@ jobs:
           echo "Waiting for pod to become running..."
           TIMEOUT=300
           START_TIME=$(date +%s)
-    
           while true; do
             # Get the pod status
             POD_STATUS=$(kubectl get pod -l app=node-app -n default -o jsonpath='{.items[0].status.phase}' 2>/dev/null)
-      
             # Check if pod is Running
             if [ "$POD_STATUS" == "Running" ]; then
               echo "Pod is running! Check complete."
               break
             fi
-      
             # Check for timeout
             CURRENT_TIME=$(date +%s)
             if [ $((CURRENT_TIME - START_TIME)) -ge $TIMEOUT ]; then
               echo "Timeout: Pod did not start within $TIMEOUT seconds."
               exit 1
             fi
-      
             echo "Pod status is '$POD_STATUS', waiting..."
             sleep 10
-          done    
+          done
+
+      - name: Deploy Gatekeeper Constraint
+        run: |
+          sleep 20s
+          cat manifests/gk-constraint.yaml
+          kubectl apply -f manifests/gk-constraint.yaml
+          kubectl get crd k8sallowedrepos.constraints.gatekeeper.sh
