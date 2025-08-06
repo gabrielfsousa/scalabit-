@@ -83,18 +83,19 @@ jobs:
 
       - name: Check connection
         run: |
-          sleep 10s
+          sleep 12s
           nc -zv $VM_IP 22
         continue-on-error: true
 
       - name: K3s bootstrap
         run: |
+          export INSTALL_K3S_CHANNEL="v1.29" ;
           k3sup install \
             --ip $VM_IP \
             --context k3s \
             --ssh-key ~/.ssh/id_rsa \
             --user gabriel
-            --k3s-channel v1.29
+            # --k3s-channel v1.29
 
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
