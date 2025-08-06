@@ -139,6 +139,7 @@ jobs:
 
       - name: Deploy Ingress Conf.
         run: |
+          sleep 6s
           kubectl apply -f manifests/ingress.yaml
 
       - name: Wait for pod to be running using a loop
