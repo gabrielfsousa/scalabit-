@@ -5,9 +5,9 @@ metadata:
   name: basic-auth
   namespace: default
 data:
-  # The value is "admin:$(htpasswd -nb admin SuperSecretPassword123)" base64 encoded
-  # Command: echo -n "admin:$(htpasswd -nb admin SuperSecretPassword123)" | base64
-  users: YWRtaW46JGFwcjEkV2dLR3hLckskdE1oV3hLVXp1eXcubnJzWjJtS0ZBLwo=
+  users: |2
+    dGVzdDokYXByMSRINnVza2trVyRJZ1hMUDZld1RyU3VCa1RycUU4d2ovCnRlc3QyOiRhcHIxJGQ5
+    aHI5SEJCJDRIeHdnVWlyM0hQNEVzZ2dQL1FObzAK
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
