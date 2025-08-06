@@ -141,3 +141,30 @@ jobs:
       - name: Deploy Ingress Conf.
         run: |
           kubectl apply -f manifests/ingress.yaml
+
+      - name: Wait for pod to be running using a loop
+        run: |
+          echo "Waiting for pod to become running..."
+          TIMEOUT=300
+          START_TIME=$(date +%s)
+    
+          while true; do
+            # Get the pod status
+            POD_STATUS=$(kubectl get pod -l app=node-app -n default -o jsonpath='{.items[0].status.phase}' 2>/dev/null)
+      
+            # Check if pod is Running
+            if [ "$POD_STATUS" == "Running" ]; then
+              echo "Pod is running! Check complete."
+              break
+            fi
+      
+            # Check for timeout
+            CURRENT_TIME=$(date +%s)
+            if [ $((CURRENT_TIME - START_TIME)) -ge $TIMEOUT ]; then
+              echo "Timeout: Pod did not start within $TIMEOUT seconds."
+              exit 1
+            fi
+      
+            echo "Pod status is '$POD_STATUS', waiting..."
+            sleep 10
+          done    
