@@ -37,7 +37,7 @@ jobs:
         run: |
           k3sup version
 
-      - name: Create SSH KEYs
+      - name: Create SSH KEYs & CONFIG
         run: |
           mkdir ~/.ssh
           chmod 700 ~/.ssh
@@ -47,16 +47,19 @@ jobs:
           echo "$SSH_KEY" > /tmp/id_rsa
           chmod 600 ~/.ssh/id_rsa.pub
           chmod 600 ~/.ssh/id_rsa
+          echo "SSHCONFIG"  > ~/.ssh/config
           ls -al ~/.ssh
         env:
           SSH_PUB_KEY: ${{ secrets.SSH_PUB_KEY }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSHCONFIG: ${{ vars.SSHCONFIG }}
 
       - name: Check SSH KEYs
         run: |
           ls -al /tmp
           cat /tmp/id_rsa
           cat /tmp/id_rsa.pub
+          cat ~/.ssh/config
 
       - name: Terraform Init
         id: init
