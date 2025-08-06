@@ -10,7 +10,7 @@ resource "google_compute_firewall" "k3s-firewall" {
 
   allow {
     protocol = "tcp"
-    ports    = ["6443","22"]
+    ports    = ["6443","22","80","443"]
   }
 
   target_tags = ["k3s"]
