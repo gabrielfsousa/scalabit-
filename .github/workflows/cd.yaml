@@ -83,12 +83,11 @@ jobs:
 
       - name: Ping k3s server
         run: |
-          sleep 10
+          sleep 5s 
           ping $VM_IP
 
       - name: Check connection
         run: |
-          sleep 10
           nc -zv $VM_IP 22
 
       - name: Check SSH KEYs
