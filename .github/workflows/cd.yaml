@@ -107,6 +107,7 @@ jobs:
           export KUBECONFIG=/home/runner/work/scalabit-/scalabit-/kubeconfig
           kubectl config use-context k3s
           kubectl get node -o wide
+          kubectl get pods -A
           echo "KUBECONFIG=/home/runner/work/scalabit-/scalabit-/kubeconfig" >> $GITHUB_ENV
 
       - name: Cat kubeconfig
