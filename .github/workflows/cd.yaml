@@ -87,6 +87,7 @@ jobs:
 
       - name: Check SSH KEYs
         run: |
+          sleep 10
           ssh -vvv gabriel@$VM_IP
 
       - name: K3s bootstrap
