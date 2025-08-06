@@ -80,6 +80,10 @@ jobs:
           VM_IP=$(terraform output -raw external_ip)
           echo "VM_IP=$VM_IP" >> $GITHUB_ENV
 
+      - name: Check connection
+        run: |
+          nc -zv $VM_IP
+
       - name: Check SSH KEYs
         run: |
           ssh -vvv gabriel@$VM_IP
