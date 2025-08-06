@@ -129,3 +129,11 @@ jobs:
       - name: Deploy APP
         run: |
           kubectl apply -f manifests/app.yaml
+
+      - name: Deploy Gatekeeper Constraint II
+        run: |
+          sleep 15s
+          cd manifests
+          cat gk-constraint.yaml
+          kubectl apply -f gk-constraint.yaml
+        continue-on-error: true
