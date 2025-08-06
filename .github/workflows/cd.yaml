@@ -137,11 +137,6 @@ jobs:
         run: |
           kubectl apply -f manifests/app.yaml
 
-      - name: Deploy Ingress Conf.
-        run: |
-          sleep 6s
-          kubectl apply -f manifests/ingress.yaml
-
       - name: Wait for pod to be running using a loop
         run: |
           echo "Waiting for pod to become running..."
@@ -171,3 +166,12 @@ jobs:
           cat manifests/gk-constraint.yaml
           kubectl apply -f manifests/gk-constraint.yaml
           kubectl get crd k8sallowedrepos.constraints.gatekeeper.sh
+
+      - name: List ALL Pods
+        run: |
+          kubectl get pods -A
+
+      - name: Deploy Ingress Conf.
+        run: |
+          sleep 10s
+          kubectl apply -f manifests/ingress.yaml
