@@ -4,8 +4,9 @@ kind: Secret
 metadata:
   name: basic-auth
   namespace: default
-data:
-  users: YWRtaW46JGFwcjEkV2dLR3hLckskdE1oV3hLVXp1eXcubnJzWjJtS0ZBLwo=
+stringData:
+  username: YWRtaW4=
+  password: YWRtaW4=
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
