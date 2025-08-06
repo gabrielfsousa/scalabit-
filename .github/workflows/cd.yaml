@@ -83,7 +83,7 @@ jobs:
 
       - name: Ping k3s server
         run: |
-          sleep 5s 
+          #sleep 5s 
           ping $VM_IP
 
       - name: Check connection
