@@ -93,8 +93,8 @@ jobs:
             --ip $VM_IP \
             --context k3s \
             --ssh-key ~/.ssh/id_rsa \
-            --user gabriel \
-            --k3s-version v1.29.15-rc2+k3s1
+            --user gabriel 
+            #           --k3s-version v1.29.15-rc2+k3s1
 
       - name: Install kubectl
         uses: azure/setup-kubectl@v3

@@ -9,4 +9,4 @@ spec:
         kinds: ["Pod"]
   parameters:
     repos:
-      - "docker.io/eaccmk/node-app-http-docker:*"
+      - "docker.io/dockerdima/node-app-http-docker:*"
