@@ -83,13 +83,8 @@ jobs:
 
       - name: Check connection
         run: |
-          sleep 5s
+          sleep 2s
           nc -zv $VM_IP 22
-        continue-on-error: true
-
-      - name: Check SSH KEYs
-        run: |
-          ssh -vvv gabriel@$VM_IP
         continue-on-error: true
 
       - name: K3s bootstrap
@@ -99,3 +94,16 @@ jobs:
             --context k3s \
             --ssh-key ~/.ssh/id_rsa \
             --user gabriel
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Check K3s
+        run: |
+          export KUBECONFIG=/home/runner/work/scalabit-/scalabit-/kubeconfig
+          kubectl config use-context k3s
+          kubectl get node -o wide       
+
+            
