@@ -83,7 +83,7 @@ jobs:
 
       - name: Check connection
         run: |
-          sleep 6s
+          sleep 8s
           nc -zv $VM_IP 22
         continue-on-error: true
 
@@ -105,8 +105,9 @@ jobs:
           export KUBECONFIG=/home/runner/work/scalabit-/scalabit-/kubeconfig
           kubectl config use-context k3s
           kubectl get node -o wide
+          echo "KUBECONFIG=/home/runner/work/scalabit-/scalabit-/kubeconfig" >> $GITHUB_ENV
 
-      - name: Cat kubeconfig 
+      - name: Cat kubeconfig
         run: |
           cat  /home/runner/work/scalabit-/scalabit-/kubeconfig
 
