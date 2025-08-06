@@ -94,8 +94,8 @@ jobs:
             --ip $VM_IP \
             --context k3s \
             --ssh-key ~/.ssh/id_rsa \
-            --user gabriel
-            # --k3s-channel v1.29
+            --user gabriel \
+            --k3s-version v1.29
 
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
