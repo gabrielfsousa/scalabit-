@@ -44,17 +44,17 @@ resource "google_compute_instance" "k3s-master" {
   }
 
 
-  provisioner "local-exec" {
-    command = <<EOT
-            ls  ~/.ssh/ ; cat  ~/.ssh/id_rsa ; k3sup install \
-            --ip ${self.network_interface[0].access_config[0].nat_ip} \
-            --context k3s \
-            --ssh-key ~/.ssh/id_rsa \
-            --user gabriel
+##  provisioner "local-exec" {
+##    command = <<EOT
+##            ls  ~/.ssh/ ; cat  ~/.ssh/id_rsa ; k3sup install \
+##            --ip ${self.network_interface[0].access_config[0].nat_ip} \
+##            --context k3s \
+##            --ssh-key ~/.ssh/id_rsa \
+##            --user gabriel
 #            --user $(whoami)
 #            --ssh-key ~/.ssh/google_compute_engine \
-        EOT
-  }
+##        EOT
+##  }
 
   depends_on = [
     google_compute_firewall.k3s-firewall,
@@ -62,3 +62,7 @@ resource "google_compute_instance" "k3s-master" {
 
 }
 
+output "external_ip" {
+  description = "The external NAT IP address of the instance."
+  value       = google_compute_instance.k3s-master.network_interface[0].access_config[0].nat_ip
+}
